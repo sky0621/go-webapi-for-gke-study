@@ -18,7 +18,6 @@ go version go1.10 linux/amd64
 ### # Docker
 <pre>
 $ sudo docker version
-[sudo] koge のパスワード: 
 Client:
  Version:           18.06.1-ce
  API version:       1.38
@@ -65,3 +64,74 @@ pubsub-emulator 2018.02.02
 
 ### echo
 https://echo.labstack.com/
+
+## docker build
+<pre>
+$ sudo docker build -t sky0621/go-webapi-for-gke-study:v0.1 .
+Sending build context to Docker daemon  6.675MB
+Step 1/10 : FROM "sky0621dhub/dockerfile-gowithdep" AS builder
+ ---> 34ac64e9d330
+Step 2/10 : COPY . /go/src/github.com/sky0621/go-webapi-for-gke-study
+ ---> c849642eda5d
+Step 3/10 : WORKDIR /go/src/github.com/sky0621/go-webapi-for-gke-study
+ ---> Running in 4d7fc8ed246f
+Removing intermediate container 4d7fc8ed246f
+ ---> 1fc4e493dccd
+Step 4/10 : RUN dep ensure
+ ---> Running in 80e12ada08ba
+Removing intermediate container 80e12ada08ba
+ ---> 5b87dcf45beb
+Step 5/10 : RUN go test ./...
+ ---> Running in 094a6c185bbe
+?   	github.com/sky0621/go-webapi-for-gke-study	[no test files]
+Removing intermediate container 094a6c185bbe
+ ---> 8eaea36ad745
+Step 6/10 : RUN CGO_ENABLED=0 go build -o go-webapi-for-gke-study github.com/sky0621/go-webapi-for-gke-study
+ ---> Running in 167eb50e01f0
+Removing intermediate container 167eb50e01f0
+ ---> 5c950d0e57c0
+Step 7/10 : FROM scratch
+ ---> 
+Step 8/10 : COPY --from=builder /go/src/github.com/sky0621/go-webapi-for-gke-study/ .
+ ---> e3f3efd1e244
+Step 9/10 : EXPOSE 80
+ ---> Running in 821d3bc99430
+Removing intermediate container 821d3bc99430
+ ---> 13b86f517dde
+Step 10/10 : ENTRYPOINT [ "./go-webapi-for-gke-study" ]
+ ---> Running in dad600e6aa43
+Removing intermediate container dad600e6aa43
+ ---> 29c44a061658
+Successfully built 29c44a061658
+Successfully tagged sky0621/go-webapi-for-gke-study:v0.1
+</pre>
+
+## docker images
+<pre>
+$ sudo docker images
+REPOSITORY                         TAG                 IMAGE ID            CREATED             SIZE
+sky0621/go-webapi-for-gke-study    v0.1                29c44a061658        6 seconds ago       14MB
+</pre>
+
+## docker run
+<pre>
+$ sudo docker run -p 80:80 sky0621/go-webapi-for-gke-study:v0.1
+
+   ____    __
+  / __/___/ /  ___
+ / _// __/ _ \/ _ \
+/___/\__/_//_/\___/ v3.3.6
+High performance, minimalist Go web framework
+https://echo.labstack.com
+____________________________________O/_______
+                                    O\
+⇨ http server started on [::]:80
+</pre>
+
+## access by postman
+https://www.getpostman.com/apps
+
+![postman](postman.png)
+<pre>
+{"level":"info","ts":1536766652.7998405,"caller":"go-webapi-for-gke-study/main.go:21","msg":"INFO LEVEL with severity","severity":"INFO"}
+</pre>

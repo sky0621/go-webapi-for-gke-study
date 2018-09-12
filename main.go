@@ -21,7 +21,7 @@ func main() {
 		logger.Info("INFO LEVEL with severity", zap.String("severity", "INFO"))
 		return c.String(http.StatusOK, "Hello, Go World!")
 	})
-	err = e.Start(":8080")
+	err = e.Start(":80")
 	if err != nil {
 		logger.Error("ERROR LEVEL with severity", zap.String("severity", "ERROR"), zap.Error(err))
 		e.Logger.Fatal(err)
