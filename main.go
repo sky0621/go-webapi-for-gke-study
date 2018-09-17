@@ -19,6 +19,8 @@ func main() {
 		// for StackdriverLogging
 		logger.Debug("DEBUG LEVEL with severity", zap.String("severity", "DEBUG"))
 		logger.Info("INFO LEVEL with severity", zap.String("severity", "INFO"))
+		logger.Warn("WARN LEVEL with severity", zap.String("severity", "WARN"))
+		logger.Error("ERROR LEVEL with severity", zap.String("severity", "ERROR"))
 		return c.String(http.StatusOK, "Hello, Go World!")
 	})
 	err = e.Start(":80")
