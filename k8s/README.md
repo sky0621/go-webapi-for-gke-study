@@ -71,3 +71,54 @@ order1-deployment-585885f756-b5dlk   1/1       Running   0          9m
 order1-deployment-585885f756-dr7m2   1/1       Running   0          9m
 order1-deployment-585885f756-vkkb2   1/1       Running   0          9m
 ```
+
+### リソース使用量の確認
+
+```shell
+$ kubectl top node
+NAME                                              CPU(cores)   CPU%      MEMORY(bytes)   MEMORY%
+gke-my-cluster-1-min-default-pool-ea807978-8d2t   31m          3%        383Mi           64%
+gke-my-cluster-1-min-default-pool-ea807978-hpqc   40m          4%        416Mi           70%
+gke-my-cluster-1-min-default-pool-ea807978-ss7p   33m          3%        402Mi           67%
+```
+
+### Pod上でのコマンド実行
+
+```shell
+$ kubectl exec -it sample-label1 /bin/sh
+#
+```
+
+### Podのログ確認
+
+```shell
+$ kubectl logs order1-deployment-bbd48b68f-nxld6
+
+   ____    __
+  / __/___/ /  ___
+ / _// __/ _ \/ _ \
+/___/\__/_//_/\___/ v3.3.6
+High performance, minimalist Go web framework
+https://echo.labstack.com
+____________________________________O/_______
+                                    O\
+⇨ http server started on [::]:80
+{"level":"info","ts":1537795575.036393,"caller":"go-webapi-for-gke-study/main.go:36","msg":"INFO LEVEL with severity","severity":"INFO"}
+{"level":"warn","ts":1537795575.0502615,"caller":"go-webapi-for-gke-study/main.go:37","msg":"WARN LEVEL with severity","severity":"WARN"}
+{"level":"error","ts":1537795575.0502732,"caller":"go-webapi-for-gke-study/main.go:38","msg":"ERROR LEVEL with severity","severity":"ERROR","stacktrace":"main.main.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/main.go:38\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).Add.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:480\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RequestIDWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/request_id.go:57\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RecoverWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/recover.go:78\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).ServeHTTP\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:583\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2619\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1801"}
+{"level":"info","ts":1537795772.0383852,"caller":"go-webapi-for-gke-study/main.go:36","msg":"INFO LEVEL with severity","severity":"INFO"}
+{"level":"warn","ts":1537795772.0384548,"caller":"go-webapi-for-gke-study/main.go:37","msg":"WARN LEVEL with severity","severity":"WARN"}
+{"level":"error","ts":1537795772.038462,"caller":"go-webapi-for-gke-study/main.go:38","msg":"ERROR LEVEL with severity","severity":"ERROR","stacktrace":"main.main.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/main.go:38\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).Add.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:480\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RequestIDWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/request_id.go:57\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RecoverWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/recover.go:78\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).ServeHTTP\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:583\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2619\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1801"}
+{"level":"info","ts":1537795773.4908075,"caller":"go-webapi-for-gke-study/main.go:36","msg":"INFO LEVEL with severity","severity":"INFO"}
+{"level":"warn","ts":1537795773.49086,"caller":"go-webapi-for-gke-study/main.go:37","msg":"WARN LEVEL with severity","severity":"WARN"}
+{"level":"error","ts":1537795773.4908679,"caller":"go-webapi-for-gke-study/main.go:38","msg":"ERROR LEVEL with severity","severity":"ERROR","stacktrace":"main.main.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/main.go:38\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).Add.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:480\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RequestIDWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/request_id.go:57\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RecoverWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/recover.go:78\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).ServeHTTP\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:583\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2619\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1801"}
+{"level":"info","ts":1537795774.7320976,"caller":"go-webapi-for-gke-study/main.go:36","msg":"INFO LEVEL with severity","severity":"INFO"}
+{"level":"warn","ts":1537795774.7321355,"caller":"go-webapi-for-gke-study/main.go:37","msg":"WARN LEVEL with severity","severity":"WARN"}
+{"level":"error","ts":1537795774.7321706,"caller":"go-webapi-for-gke-study/main.go:38","msg":"ERROR LEVEL with severity","severity":"ERROR","stacktrace":"main.main.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/main.go:38\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).Add.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:480\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RequestIDWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/request_id.go:57\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RecoverWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/recover.go:78\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).ServeHTTP\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:583\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2619\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1801"}
+{"level":"info","ts":1537795776.0714352,"caller":"go-webapi-for-gke-study/main.go:36","msg":"INFO LEVEL with severity","severity":"INFO"}
+{"level":"warn","ts":1537795776.0715005,"caller":"go-webapi-for-gke-study/main.go:37","msg":"WARN LEVEL with severity","severity":"WARN"}
+{"level":"error","ts":1537795776.071509,"caller":"go-webapi-for-gke-study/main.go:38","msg":"ERROR LEVEL with severity","severity":"ERROR","stacktrace":"main.main.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/main.go:38\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).Add.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:480\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RequestIDWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/request_id.go:57\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RecoverWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/recover.go:78\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).ServeHTTP\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:583\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2619\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1801"}
+{"level":"info","ts":1537795777.3998318,"caller":"go-webapi-for-gke-study/main.go:36","msg":"INFO LEVEL with severity","severity":"INFO"}
+{"level":"warn","ts":1537795777.3998837,"caller":"go-webapi-for-gke-study/main.go:37","msg":"WARN LEVEL with severity","severity":"WARN"}
+{"level":"error","ts":1537795777.3998911,"caller":"go-webapi-for-gke-study/main.go:38","msg":"ERROR LEVEL with severity","severity":"ERROR","stacktrace":"main.main.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/main.go:38\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).Add.func1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:480\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RequestIDWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/request_id.go:57\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware.RecoverWithConfig.func1.1\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/middleware/recover.go:78\ngithub.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo.(*Echo).ServeHTTP\n\t/go/src/github.com/sky0621/go-webapi-for-gke-study/vendor/github.com/labstack/echo/echo.go:583\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2619\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1801"}
+```
