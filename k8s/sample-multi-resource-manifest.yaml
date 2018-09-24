@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order1-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+        - name: go-webapi-for-gke-study
+          image: gcr.io/【プロジェクトID】/go-webapi-for-gke-study@sha256:a2d9aba633e9d7e7740e1df57996876bc84a2b1506d2ba606efb59febbc25bd7
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-2-deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - name: "http-pprt"
+      protocol: "TCP"
+      port: 8080
+      targetPort: 80
+  selector:
+    app: sample-app
