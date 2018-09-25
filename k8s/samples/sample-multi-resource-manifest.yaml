@@ -7,7 +7,7 @@ metadata:
     annotation1: val1
     annotation2: val2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: sample-app
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: go-webapi-for-gke-study
-          image: gcr.io/【プロジェクトID】/go-webapi-for-gke-study@sha256:a2d9aba633e9d7e7740e1df57996876bc84a2b1506d2ba606efb59febbc25bd7
+          image: sky0621dhub/go-webapi-for-gke-study:v0.1
           ports:
             - containerPort: 80
 ---

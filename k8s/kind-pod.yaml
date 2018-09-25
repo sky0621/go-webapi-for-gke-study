@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kind-pod
+  labels:
+    app: go
+spec:
+  containers:
+    - name: go-webapi-for-gke-study
+      image: sky0621dhub/go-webapi-for-gke-study:v0.1

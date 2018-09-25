@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: go-webapi-for-gke-study-pod
-spec:
-  containers:
-    - name: go-webapi-for-gke-study
-      image: gcr.io/【プロジェクトID】/go-webapi-for-gke-study@sha256:e38c30b2dae0364ba91ab66f7b7247a392dac952f317143c475efe11a98dcf40

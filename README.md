@@ -151,3 +151,9 @@ DONE
 ID                                    CREATE_TIME                DURATION  SOURCE                                                                                  IMAGES                                                 STATUS
 0cb8242b-d6c1-4044-adc1-535f23ab46f8  2018-09-24T12:33:30+00:00  1M45S     gs://【プロジェクトID】_cloudbuild/source/1537792407.93-c60debfd6404421a956da8e7bb525673.tgz  gcr.io/【プロジェクトID】/go-webapi-for-gke-study (+1 more)  SUCCESS
 ```
+
+## docker login -> push
+
+sudo docker login
+
+sudo docker push sky0621dhub/go-webapi-for-gke-study

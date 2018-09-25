@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: kind-rs
+  labels:
+    app: go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rsgo
+  template:
+    metadata:
+      labels:
+        app: rsgo
+    spec:
+      containers:
+        - name: go-webapi-for-gke-study
+          image: sky0621dhub/go-webapi-for-gke-study:v0.1
+          ports:
+            - containerPort: 80
