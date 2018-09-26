@@ -27,6 +27,7 @@ func main() {
 	e.Use(middleware.RequestID())
 
 	e.GET("/", func(c echo.Context) error {
+		logger.Info("RealIP: " + c.RealIP())
 		// span := traceCli.SpanFromRequest(c.Request())
 		// defer span.Finish()
 		// for StackdriverLogging
@@ -34,7 +35,7 @@ func main() {
 		logger.Info("INFO LEVEL with severity", zap.String("severity", "INFO"))
 		logger.Warn("WARN LEVEL with severity", zap.String("severity", "WARN"))
 		logger.Error("ERROR LEVEL with severity", zap.String("severity", "ERROR"))
-		return c.String(http.StatusOK, "Hello, Go World!")
+		return c.JSON(http.StatusOK, "{\"pg\":\"golang\",\"word\":\"Hello\"}")
 	})
 	err = e.Start(":80")
 	if err != nil {
